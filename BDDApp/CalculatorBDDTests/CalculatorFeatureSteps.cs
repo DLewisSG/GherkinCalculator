@@ -1,33 +1,39 @@
 ﻿using System;
+using BDDApp;
+using NUnit.Framework;
 using TechTalk.SpecFlow;
 
 namespace CalculatorBDDTests
 {
+   
     [Binding]
     public class CalculatorFeatureSteps
     {
-        [Given(@"I have a calculator")]
+        private Calculator _calulator;
+        private int _result;
+       [Given(@"I have a calculator")]
         public void GivenIHaveACalculator()
         {
-            ScenarioContext.Current.Pending();
+           _calulator = new Calculator();
         }
         
         [Given(@"I enter (.*) and (.*) into the calculator")]
-        public void GivenIEnterAndIntoTheCalculator(int p0, int p1)
+        public void GivenIEnterAndIntoTheCalculator(int num1, int num2)
         {
-            ScenarioContext.Current.Pending();
+            _calulator.Num1 = num1;
+            _calulator.Num2 = num2;
         }
         
         [When(@"I press add")]
         public void WhenIPressAdd()
         {
-            ScenarioContext.Current.Pending();
+           _result = _calulator.Add();
         }
         
         [Then(@"the result should be (.*)")]
-        public void ThenTheResultShouldBe(int p0)
+        public void ThenTheResultShouldBe(int expResult)
         {
-            ScenarioContext.Current.Pending();
+           Assert.That(_result, Is.EqualTo(expResult));
         }
     }
 }
