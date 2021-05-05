@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using BDDApp;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
@@ -11,6 +12,7 @@ namespace CalculatorBDDTests
     {
         private Calculator _calulator;
         private int _result;
+        private List<int> _myList = new List<int>();
        [Given(@"I have a calculator")]
         public void GivenIHaveACalculator()
         {
@@ -34,6 +36,45 @@ namespace CalculatorBDDTests
         public void WhenIPressSubtract()
         {
             _result = _calulator.Subtract();
+        }
+
+        [When(@"I press multiply")]
+        public void WhenIPressMultiply()
+        {
+            _result = _calulator.Multiply();
+        }
+
+        [When(@"I press divide")]
+        public void WhenIPressDivide()
+        {
+            _result = _calulator.Divide();
+        }
+
+        [Given(@"I enter the numbers below to a list")]
+        public void GivenIEnterTheNumbersBelowToAList(Table table)
+        {
+           foreach(var row in table.Rows)
+            {
+                _myList.Add(int.Parse(row[0].Trim()));
+            }
+        }
+
+        [When(@"I add all the even numbers in the list")]
+        public void WhenIAddAllTheEvenNumbersInTheList()
+        {
+            _result = _calulator.SumOfEvenNumbersInAList(_myList);
+        }
+
+        [Given(@"I enter the (.*) into the calculator")]
+        public void GivenIEnterTheIntoTheCalculator(int input1)
+        {
+            _calulator.Num1 = input1;
+        }
+
+        [Then(@"a DivideByZero Exception should be thrown with the exception message ""(.*)"" when I press divide")]
+        public void ThenADivideByZeroExceptionShouldBeThrownWithTheExceptionMessageWhenIPressDivide(string exceptionString)
+        {
+           Assert.That(exceptionString, Is.EqualTo("Cannot Divide By Zero"));
         }
 
 

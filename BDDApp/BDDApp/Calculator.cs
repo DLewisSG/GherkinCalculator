@@ -20,5 +20,26 @@ namespace BDDApp
         {
             return Num1 - Num2;
         }
+
+        public int Multiply()
+        {
+            return Num1 * Num2;
+        }
+
+        public int Divide()
+        {
+            if (Num2 == 0) throw new Exception("Cannot Divide By Zero");
+            return Num1 / Num2;
+        }
+        public int SumOfEvenNumbersInAList(List<int> myList)
+        {
+            int sum = 0;
+            foreach (var num in myList)
+            {
+                if (num % 2 == 0)
+                    sum += num;
+            }
+            return sum;
+        }
     }
 }
