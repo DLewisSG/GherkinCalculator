@@ -10,3 +10,10 @@ Scenario: Add two numbers
 	And I enter 5 and 2 into the calculator
 	When I press add
 	Then the result should be 7
+
+	@mytag
+Scenario: Subtract two numbers
+	Given I have a calculator
+	And I enter 5 and 2 into the calculator
+	When I press subtract
+	Then the result should be 3

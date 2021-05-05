@@ -15,5 +15,10 @@ namespace BDDApp
         {
             return Num1 + Num2;
         }
+
+        public int Subtract()
+        {
+            return Num1 - Num2;
+        }
     }
 }

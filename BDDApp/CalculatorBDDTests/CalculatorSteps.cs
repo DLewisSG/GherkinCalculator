@@ -7,7 +7,7 @@ namespace CalculatorBDDTests
 {
    
     [Binding]
-    public class CalculatorFeatureSteps
+    public class CalculatorSteps
     {
         private Calculator _calulator;
         private int _result;
@@ -29,7 +29,14 @@ namespace CalculatorBDDTests
         {
            _result = _calulator.Add();
         }
-        
+
+        [When(@"I press subtract")]
+        public void WhenIPressSubtract()
+        {
+            _result = _calulator.Subtract();
+        }
+
+
         [Then(@"the result should be (.*)")]
         public void ThenTheResultShouldBe(int expResult)
         {
