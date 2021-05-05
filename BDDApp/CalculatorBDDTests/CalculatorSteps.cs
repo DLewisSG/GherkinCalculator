@@ -74,7 +74,7 @@ namespace CalculatorBDDTests
         [Then(@"a DivideByZero Exception should be thrown with the exception message ""(.*)"" when I press divide")]
         public void ThenADivideByZeroExceptionShouldBeThrownWithTheExceptionMessageWhenIPressDivide(string exceptionString)
         {
-           Assert.That(exceptionString, Is.EqualTo("Cannot Divide By Zero"));
+            Assert.That(() => _calulator.Divide(), Throws.Exception.With.Message.EqualTo(exceptionString));
         }
 
 
